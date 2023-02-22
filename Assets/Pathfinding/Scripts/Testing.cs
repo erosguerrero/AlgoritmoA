@@ -31,23 +31,12 @@ public class Testing : MonoBehaviour {
     //WAYPOINT SYSTEM
     [SerializeField] private GameObject WaypointPrefab; //Plantilla de las columnas de los prefabs con su info
     [SerializeField] private Transform scrollBar; //La scrollbar donde poner la plantilla de arriba y que sea scrolleable
-    private List<Vector2> waypointList; //De pairs <x,y>
+    private List<Vector3> waypointList; //De pairs <x,y>
     private void Start() {
         pathfinding = new Pathfinding(X, Y);
         pathfindingDebugStepVisual.Setup(pathfinding.GetGrid());
         pathfindingVisual.SetGrid(pathfinding.GetGrid());
-        waypointList = new List<Vector2>();
-    }
-    public void changeGrid(int W, int H) {
-        if (W <= 0) W = X;
-        if(H <= 0) H = Y;
-        X = W;
-        Y = H;
-        pathfinding = new Pathfinding(W, H);
-        pathfindingDebugStepVisual.Setup(pathfinding.GetGrid());
-        Debug.Log(pathfinding.GetGrid().GetWidth() == W);
-        
-        pathfindingVisual.SetGrid(pathfinding.GetGrid());
+        waypointList = new List<Vector3>();
     }
     private void Update() {
         if (Input.GetMouseButtonDown(0)) {
@@ -80,12 +69,28 @@ public class Testing : MonoBehaviour {
             GameObject wp = Instantiate(WaypointPrefab);
             wp.transform.SetParent(scrollBar);
             wp.transform.localScale= Vector3.one;
-            waypointList.Add(new Vector2(x, y));
+            waypointList.Add(new Vector3(x*10f, y*10f));
             wp.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = waypointList.Count.ToString();
-            wp.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = x.ToString();
-            wp.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = y.ToString();
-
+            wp.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = (x/10f).ToString();
+            wp.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = (y/10f).ToString();
         }
     }
 
+    public void wayPointStart(){
+        characterPathfinding.SetTargetPosition(waypointList);
+        waypointList.Clear();
+
+    }
+    public void changeGrid(int W, int H)
+    {
+        if (W <= 0) W = X;
+        if (H <= 0) H = Y;
+        X = W;
+        Y = H;
+        pathfinding = new Pathfinding(W, H);
+        pathfindingDebugStepVisual.Setup(pathfinding.GetGrid());
+        Debug.Log(pathfinding.GetGrid().GetWidth() == W);
+
+        pathfindingVisual.SetGrid(pathfinding.GetGrid());
+    }
 }

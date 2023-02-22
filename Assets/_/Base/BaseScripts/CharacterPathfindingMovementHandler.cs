@@ -80,5 +80,21 @@ public class CharacterPathfindingMovementHandler : MonoBehaviour {
             pathVectorList.RemoveAt(0);
         }
     }
+    public void SetTargetPosition(List<Vector3> targetPosition)
+    {
+        currentPathIndex = 0;
+        pathVectorList = new List<Vector3>();
+        Vector3 lastPosition = GetPosition();
+        foreach (var t in targetPosition)
+        {
+            pathVectorList.AddRange(Pathfinding.Instance.FindPath(lastPosition, t));
+            lastPosition = t;
+        }
+
+        if (pathVectorList != null && pathVectorList.Count > 1)
+        {
+            pathVectorList.RemoveAt(0);
+        }
+    }
 
 }
