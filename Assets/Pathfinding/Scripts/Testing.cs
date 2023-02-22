@@ -24,19 +24,20 @@ public class Testing : MonoBehaviour {
     private Pathfinding pathfinding;
     private int X=20, Y=10;
     private void Start() {
-        pathfinding = new Pathfinding(20,10);
+        pathfinding = new Pathfinding(X, Y);
         pathfindingDebugStepVisual.Setup(pathfinding.GetGrid());
         pathfindingVisual.SetGrid(pathfinding.GetGrid());
     }
     public void changeGrid(int W, int H) {
         if (W <= 0) W = X;
         if(H <= 0) H = Y;
-        Debug.Log("2W" + W + "H" + H);
-        //pathfinding = new Pathfinding(W, H);
-        //pathfindingDebugStepVisual.Setup(pathfinding.GetGrid());
-        //Debug.Log(pathfinding.GetGrid().GetWidth());
-        //pathfindingVisual.SetGrid(pathfinding.GetGrid());
-        //Debug.Log(pathfinding.GetGrid().GetWidth());
+        X = W;
+        Y = H;
+        pathfinding = new Pathfinding(W, H);
+        pathfindingDebugStepVisual.Setup(pathfinding.GetGrid());
+        Debug.Log(pathfinding.GetGrid().GetWidth() == W);
+        
+        pathfindingVisual.SetGrid(pathfinding.GetGrid());
     }
     private void Update() {
         if (Input.GetMouseButtonDown(0)) {

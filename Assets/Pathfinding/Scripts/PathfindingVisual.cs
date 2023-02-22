@@ -1,14 +1,4 @@
-﻿/* 
-    ------------------- Code Monkey -------------------
-
-    Thank you for downloading this package
-    I hope you find it useful in your projects
-    If you have any questions let me know
-    Cheers!
-
-               unitycodemonkey.com
-    --------------------------------------------------
- */
+﻿
 
 using System.Collections;
 using System.Collections.Generic;
@@ -26,6 +16,8 @@ public class PathfindingVisual : MonoBehaviour {
     }
 
     public void SetGrid(Grid<PathNode> grid) {
+        mesh = new Mesh();
+        GetComponent<MeshFilter>().mesh = mesh;
         this.grid = grid;
         UpdateVisual();
 
