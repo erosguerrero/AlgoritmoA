@@ -15,6 +15,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
 using CodeMonkey;
+using System.Net.NetworkInformation;
+using UnityEngine.UI;
+using TMPro;
+using Unity.VisualScripting;
 
 public class Testing : MonoBehaviour {
     
@@ -23,10 +27,16 @@ public class Testing : MonoBehaviour {
     [SerializeField] private CharacterPathfindingMovementHandler characterPathfinding;
     private Pathfinding pathfinding;
     private int X=20, Y=10;
+
+    //WAYPOINT SYSTEM
+    [SerializeField] private GameObject WaypointPrefab; //Plantilla de las columnas de los prefabs con su info
+    [SerializeField] private Transform scrollBar; //La scrollbar donde poner la plantilla de arriba y que sea scrolleable
+    private List<Vector2> waypointList; //De pairs <x,y>
     private void Start() {
         pathfinding = new Pathfinding(X, Y);
         pathfindingDebugStepVisual.Setup(pathfinding.GetGrid());
         pathfindingVisual.SetGrid(pathfinding.GetGrid());
+        waypointList = new List<Vector2>();
     }
     public void changeGrid(int W, int H) {
         if (W <= 0) W = X;
@@ -56,6 +66,25 @@ public class Testing : MonoBehaviour {
             Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
             pathfinding.GetGrid().GetXY(mouseWorldPosition, out int x, out int y);
             pathfinding.GetNode(x, y).SetIsWalkable(!pathfinding.GetNode(x, y).isWalkable);
+        }
+
+        if (Input.GetKeyDown("w"))
+        {
+            //Vemos donde "clickó" el usuario para colocar un waypoint
+            Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
+            pathfinding.GetGrid().GetXY(mouseWorldPosition, out int x, out int y);
+
+            Debug.Log("Waypoint colocado en X:"+x+" Y:"+y);
+            //TODO WAYPOING SYSTEM QUEUE
+
+            GameObject wp = Instantiate(WaypointPrefab);
+            wp.transform.SetParent(scrollBar);
+            wp.transform.localScale= Vector3.one;
+            waypointList.Add(new Vector2(x, y));
+            wp.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = waypointList.Count.ToString();
+            wp.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = x.ToString();
+            wp.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = y.ToString();
+
         }
     }
 
