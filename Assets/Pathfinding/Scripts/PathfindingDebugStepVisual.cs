@@ -36,7 +36,6 @@ public class PathfindingDebugStepVisual : MonoBehaviour {
 
     public void Setup(Grid<PathNode> grid) {
         visualNodeArray = new Transform[grid.GetWidth(), grid.GetHeight()];
-
         for (int x = 0; x < grid.GetWidth(); x++) {
             for (int y = 0; y < grid.GetHeight(); y++) {
                 Vector3 gridPosition = new Vector3(x, y) * grid.GetCellSize() + Vector3.one * grid.GetCellSize() * .5f;
@@ -176,10 +175,16 @@ public class PathfindingDebugStepVisual : MonoBehaviour {
             visualNodeTransform.Find("gCostText").GetComponent<TextMeshPro>().SetText(gCost.ToString());
             visualNodeTransform.Find("hCostText").GetComponent<TextMeshPro>().SetText(hCost.ToString());
             visualNodeTransform.Find("fCostText").GetComponent<TextMeshPro>().SetText(fCost.ToString());
+            Destroy(visualNodeTransform.Find("gCostText").GetComponent<CanvasRenderer>());
+            Destroy(visualNodeTransform.Find("hCostText").GetComponent<CanvasRenderer>());
+            Destroy(visualNodeTransform.Find("fCostText").GetComponent<CanvasRenderer>());
         } else {
             visualNodeTransform.Find("gCostText").GetComponent<TextMeshPro>().SetText("");
             visualNodeTransform.Find("hCostText").GetComponent<TextMeshPro>().SetText("");
             visualNodeTransform.Find("fCostText").GetComponent<TextMeshPro>().SetText("");
+            Destroy(visualNodeTransform.Find("gCostText").GetComponent<CanvasRenderer>());
+            Destroy(visualNodeTransform.Find("hCostText").GetComponent<CanvasRenderer>());
+            Destroy(visualNodeTransform.Find("fCostText").GetComponent<CanvasRenderer>());
         }
     }
 
