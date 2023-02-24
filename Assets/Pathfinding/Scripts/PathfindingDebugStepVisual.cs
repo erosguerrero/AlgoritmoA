@@ -26,8 +26,8 @@ public class PathfindingDebugStepVisual : MonoBehaviour {
     private List<GridSnapshotAction> gridSnapshotActionList;
     private bool autoShowSnapshots;
     private float autoShowSnapshotsTimer;
-    private Transform[,] visualNodeArray; 
-
+    private Transform[,] visualNodeArray;
+    [SerializeField] private Color bgColor, CloseListColor, OpenListColor, CurrentColor;
     private void Awake() {
         Instance = this;
         visualNodeList = new List<Transform>();
@@ -103,16 +103,16 @@ public class PathfindingDebugStepVisual : MonoBehaviour {
                     Transform visualNode = visualNodeArray[tmpX, tmpY];
                     SetupVisualNode(visualNode, gCost, hCost, fCost);
 
-                    Color backgroundColor = UtilsClass.GetColorFromString("636363");
+                    Color backgroundColor = bgColor;
 
                     if (isInClosedList) {
-                        backgroundColor = new Color(1, 0, 0);
+                        backgroundColor = CloseListColor;
                     }
                     if (isInOpenList) {
-                        backgroundColor = UtilsClass.GetColorFromString("009AFF");
+                        backgroundColor = OpenListColor;
                     }
                     if (isCurrent) {
-                        backgroundColor = new Color(0, 1, 0);
+                        backgroundColor = CurrentColor;
                     }
 
                     visualNode.Find("sprite").GetComponent<SpriteRenderer>().color = backgroundColor;
@@ -175,16 +175,10 @@ public class PathfindingDebugStepVisual : MonoBehaviour {
             visualNodeTransform.Find("gCostText").GetComponent<TextMeshPro>().SetText(gCost.ToString());
             visualNodeTransform.Find("hCostText").GetComponent<TextMeshPro>().SetText(hCost.ToString());
             visualNodeTransform.Find("fCostText").GetComponent<TextMeshPro>().SetText(fCost.ToString());
-            Destroy(visualNodeTransform.Find("gCostText").GetComponent<CanvasRenderer>());
-            Destroy(visualNodeTransform.Find("hCostText").GetComponent<CanvasRenderer>());
-            Destroy(visualNodeTransform.Find("fCostText").GetComponent<CanvasRenderer>());
         } else {
             visualNodeTransform.Find("gCostText").GetComponent<TextMeshPro>().SetText("");
             visualNodeTransform.Find("hCostText").GetComponent<TextMeshPro>().SetText("");
             visualNodeTransform.Find("fCostText").GetComponent<TextMeshPro>().SetText("");
-            Destroy(visualNodeTransform.Find("gCostText").GetComponent<CanvasRenderer>());
-            Destroy(visualNodeTransform.Find("hCostText").GetComponent<CanvasRenderer>());
-            Destroy(visualNodeTransform.Find("fCostText").GetComponent<CanvasRenderer>());
         }
     }
 
