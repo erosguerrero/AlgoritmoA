@@ -1,16 +1,4 @@
-﻿/* 
-    ------------------- Code Monkey -------------------
-
-    Thank you for downloading this package
-    I hope you find it useful in your projects
-    If you have any questions let me know
-    Cheers!
-
-               unitycodemonkey.com
-    --------------------------------------------------
- */
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,7 +45,7 @@ public class PathfindingDebugStepVisual : MonoBehaviour {
         }
 
         if (autoShowSnapshots) {
-            float autoShowSnapshotsTimerMax = .05f;
+            float autoShowSnapshotsTimerMax = .01f;
             autoShowSnapshotsTimer -= Time.deltaTime;
             if (autoShowSnapshotsTimer <= 0f) {
                 autoShowSnapshotsTimer += autoShowSnapshotsTimerMax;
@@ -148,7 +136,7 @@ public class PathfindingDebugStepVisual : MonoBehaviour {
                     if (isInPath) {
                         backgroundColor = new Color(0, 1, 0);
                     } else {
-                        backgroundColor = UtilsClass.GetColorFromString("636363");
+                        backgroundColor = bgColor;
                     }
 
                     visualNode.Find("sprite").GetComponent<SpriteRenderer>().color = backgroundColor;
