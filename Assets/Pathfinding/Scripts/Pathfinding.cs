@@ -34,11 +34,11 @@ public class Pathfinding {
         return grid;
     }
 
-    public List<Vector3> FindPath(Vector3 startWorldPosition, Vector3 endWorldPosition) {
+    public List<Vector3> FindPath(Vector3 startWorldPosition, Vector3 endWorldPosition, bool isWaypointsRace) {
         grid.GetXY(startWorldPosition, out int startX, out int startY);
         grid.GetXY(endWorldPosition, out int endX, out int endY);
 
-        List<PathNode> path = FindPath(startX, startY, endX, endY);
+        List<PathNode> path = FindPath(startX, startY, endX, endY, isWaypointsRace);
         if (path == null) {
             return null;
         } else {
@@ -50,7 +50,7 @@ public class Pathfinding {
         }
     }
 
-    public List<PathNode> FindPath(int startX, int startY, int endX, int endY) {
+    public List<PathNode> FindPath(int startX, int startY, int endX, int endY, bool isWaypointsRace) {
         PathNode startNode = grid.GetGridObject(startX, startY);
         PathNode endNode = grid.GetGridObject(endX, endY);
 
@@ -75,7 +75,8 @@ public class Pathfinding {
         startNode.hCost = CalculateDistanceCost(startNode, endNode);
         startNode.CalculateFCost();
         
-        PathfindingDebugStepVisual.Instance.ClearSnapshots();
+        if(!isWaypointsRace)PathfindingDebugStepVisual.Instance.ClearSnapshots();
+
         PathfindingDebugStepVisual.Instance.TakeSnapshot(grid, startNode, openList, closedList);
 
         while (openList.Count > 0) {
@@ -115,7 +116,7 @@ public class Pathfinding {
         // Out of nodes on the openList
         return null;
     }
-
+    
     private List<PathNode> GetNeighbourList(PathNode currentNode) {
         List<PathNode> neighbourList = new List<PathNode>();
 

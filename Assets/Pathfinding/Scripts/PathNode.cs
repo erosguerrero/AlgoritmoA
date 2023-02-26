@@ -23,15 +23,20 @@ public class PathNode {
     public int gCost;
     public int hCost;
     public int fCost;
-
+    public string W;
     public bool isWalkable;
+    public bool isWaypoint;
     public PathNode cameFromNode;
+    public GameObject marker;
 
     public PathNode(Grid<PathNode> grid, int x, int y) {
         this.grid = grid;
         this.x = x;
         this.y = y;
-        isWalkable = true;
+        this.isWalkable= true;
+        this.W = "";
+        isWaypoint = false;
+        
     }
 
     public void CalculateFCost() {
@@ -42,7 +47,13 @@ public class PathNode {
         this.isWalkable = isWalkable;
         grid.TriggerGridObjectChanged(x, y);
     }
-
+    public void SetIsWaypoint(bool isWaypoint)
+    {   
+        this.isWaypoint = isWaypoint;
+        if(this.isWaypoint) { this.W = "W"; }
+        else{this.W = "";}
+        grid.TriggerGridObjectChanged(x, y);
+    }
     public override string ToString() {
         return x + "," + y;
     }
