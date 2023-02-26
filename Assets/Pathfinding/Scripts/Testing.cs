@@ -97,7 +97,7 @@ public class Testing : MonoBehaviour {
                 
 
                 //wp.transform.SetParent(scrollBar);
-                wp.transform.localScale = new Vector3(2, 2, 2);
+                wp.transform.localScale = new Vector3(3, 3, 3);
 
                 waypointList.Add(new Vector3(x * 10f, y * 10f));
                 float Cellsize = pathfinding.GetGrid().GetCellSize();
