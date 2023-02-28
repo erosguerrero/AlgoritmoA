@@ -56,7 +56,7 @@ public class Testing : MonoBehaviour {
         if (Input.GetMouseButtonDown(1)) {
             Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
             pathfinding.GetGrid().GetXY(mouseWorldPosition, out int x, out int y);
-            pathfinding.GetNode(x, y).SetIsWalkable(!pathfinding.GetNode(x, y).isWalkable);
+            if(!pathfinding.GetNode(x,y).isWaypoint) pathfinding.GetNode(x, y).SetIsWalkable(!pathfinding.GetNode(x, y).isWalkable);
         }
 
         if (Input.GetKeyDown("w"))
