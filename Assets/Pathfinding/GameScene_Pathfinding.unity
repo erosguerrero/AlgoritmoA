@@ -2653,7 +2653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pfPathfindingDebugStepVisualNode: {fileID: 6536783764682816104, guid: 137cc74e80adc6648a54b841982d1a8e, type: 3}
-  bgColor: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 0.4117647}
+  bgColor: {r: 0.8, g: 0.8, b: 0.8, a: 0.5647059}
   CloseListColor: {r: 1, g: 0.03955944, b: 0, a: 1}
   OpenListColor: {r: 0.10849059, g: 0.8738669, b: 1, a: 1}
   CurrentColor: {r: 0.053014517, g: 1, b: 0, a: 1}
@@ -5048,8 +5048,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1742028178}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.8, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1198489101}
