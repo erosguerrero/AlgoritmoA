@@ -33,9 +33,15 @@ public class PathNode {
         this.grid = grid;
         this.x = x;
         this.y = y;
-        this.isWalkable= true;
         this.W = "";
         isWaypoint = false;
+        int number = Random.Range(0,100);
+        
+        if(number < 15 && this.x > 0 && this.y > 0){
+            this.isWalkable = false;
+        }else{
+            this.isWalkable = true;
+        }
         
     }
 
