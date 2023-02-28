@@ -5280,7 +5280,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "-Click izquierdo: Marca el destino\r\n-Click derecho: A\xF1ade/elimina
+  m_text: "-Clic izquierdo: Moverse a la casilla\n-Clic derecho: A\xF1ade/elimina
     obst\xE1culo\r\n-W: A\xF1ade/elimina un waypoint"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
