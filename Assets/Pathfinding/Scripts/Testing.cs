@@ -112,6 +112,9 @@ public class Testing : MonoBehaviour {
         }
     }
 
+    public void CloseApp() {
+        Application.Quit();
+    }
     public void wayPointStart(){
         //Personaje
         characterPathfinding.SetTargetPosition(waypointList);
