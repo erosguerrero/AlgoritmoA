@@ -37,7 +37,7 @@ public class PathNode {
         this.W = "";
         int prob = Random.Range(0, 100);
         if (prob <20) {
-            this.costTho = Random.Range(100,300);
+            this.costTho = 9999;//Random.Range(100,300);
         } else {
             this.costTho = 0;
         }

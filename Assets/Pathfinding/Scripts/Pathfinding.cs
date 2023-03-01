@@ -99,6 +99,8 @@ public class Pathfinding {
                 }
 
                 int tentativeGCost = currentNode.gCost + CalculateDistanceCost(currentNode, neighbourNode);
+                //COSTE DE CASILLA
+                tentativeGCost += currentNode.costTho;
                 if (tentativeGCost < neighbourNode.gCost) {
                     neighbourNode.cameFromNode = currentNode;
                     neighbourNode.gCost = tentativeGCost;
