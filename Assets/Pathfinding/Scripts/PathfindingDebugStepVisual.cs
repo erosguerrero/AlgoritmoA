@@ -79,6 +79,7 @@ public class PathfindingDebugStepVisual : MonoBehaviour {
 
                 int gCost = pathNode.gCost;
                 int hCost = pathNode.hCost;
+                int costTho = pathNode.costTho;
                 int fCost = pathNode.fCost;
                 string W = pathNode.W;
                 Vector3 gridPosition = new Vector3(pathNode.x, pathNode.y) * grid.GetCellSize() + Vector3.one * grid.GetCellSize() * .5f;
@@ -90,7 +91,7 @@ public class PathfindingDebugStepVisual : MonoBehaviour {
 
                 gridSnapshotAction.AddAction(() => {
                     Transform visualNode = visualNodeArray[tmpX, tmpY];
-                    SetupVisualNode(visualNode, gCost, hCost, fCost, W);
+                    SetupVisualNode(visualNode, gCost, hCost, fCost, W, costTho);
 
                     Color backgroundColor = bgColor;
                     if (pathNode.isWaypoint)
@@ -117,7 +118,7 @@ public class PathfindingDebugStepVisual : MonoBehaviour {
 
     public void TakeSnapshotFinalPath(Grid<PathNode> grid, List<PathNode> path) {
         GridSnapshotAction gridSnapshotAction = new GridSnapshotAction();
-        gridSnapshotAction.AddAction(HideNodeVisuals);
+        //gridSnapshotAction.AddAction(HideNodeVisuals);
         
         for (int x = 0; x < grid.GetWidth(); x++) {
             for (int y = 0; y < grid.GetHeight(); y++) {
@@ -126,6 +127,7 @@ public class PathfindingDebugStepVisual : MonoBehaviour {
                 int gCost = pathNode.gCost;
                 int hCost = pathNode.hCost;
                 int fCost = pathNode.fCost;
+                int costTho = pathNode.costTho;
                 string W = pathNode.W;
                 Vector3 gridPosition = new Vector3(pathNode.x, pathNode.y) * grid.GetCellSize() + Vector3.one * grid.GetCellSize() * .5f;
                 bool isInPath = path.Contains(pathNode);
@@ -134,7 +136,7 @@ public class PathfindingDebugStepVisual : MonoBehaviour {
 
                 gridSnapshotAction.AddAction(() => { 
                     Transform visualNode = visualNodeArray[tmpX, tmpY];
-                    SetupVisualNode(visualNode, gCost, hCost, fCost, W);
+                    SetupVisualNode(visualNode, gCost, hCost, fCost, W, costTho);
 
                     Color backgroundColor;
 
@@ -154,7 +156,7 @@ public class PathfindingDebugStepVisual : MonoBehaviour {
 
     private void HideNodeVisuals() {
         foreach (Transform visualNodeTransform in visualNodeList) {
-            SetupVisualNode(visualNodeTransform, 9999, 9999, 9999, "");
+            SetupVisualNode(visualNodeTransform, 9999, 9999, 9999, "",0);
         }
     }
 
@@ -163,17 +165,20 @@ public class PathfindingDebugStepVisual : MonoBehaviour {
         return visualNodeTransform;
     }
 
-    private void SetupVisualNode(Transform visualNodeTransform, int gCost, int hCost, int fCost, string W) {
+    private void SetupVisualNode(Transform visualNodeTransform, int gCost, int hCost, int fCost, string W, int cost) {
         if (fCost < 1000) {
             visualNodeTransform.Find("gCostText").GetComponent<TextMeshPro>().SetText(gCost.ToString());
             visualNodeTransform.Find("hCostText").GetComponent<TextMeshPro>().SetText(hCost.ToString());
             visualNodeTransform.Find("fCostText").GetComponent<TextMeshPro>().SetText(fCost.ToString());
             visualNodeTransform.Find("WaypointCheck").GetComponent<TextMeshPro>().SetText(W);
+            visualNodeTransform.Find("costTho").GetComponent<TextMeshPro>().SetText(cost!=0?cost.ToString():"");
+
         } else {
             visualNodeTransform.Find("gCostText").GetComponent<TextMeshPro>().SetText("");
             visualNodeTransform.Find("hCostText").GetComponent<TextMeshPro>().SetText("");
             visualNodeTransform.Find("fCostText").GetComponent<TextMeshPro>().SetText("");
             visualNodeTransform.Find("WaypointCheck").GetComponent<TextMeshPro>().SetText(W);
+            visualNodeTransform.Find("costTho").GetComponent<TextMeshPro>().SetText(cost != 0 ? cost.ToString() : "");
         }
     }
 

@@ -82,9 +82,12 @@ public class Testing : MonoBehaviour {
                     Destroy(pathfinding.GetNode(x, y).marker); 
                 }
                 Vector3 buscado = new Vector3(x * 10f, y * 10f);
+                
+
                 foreach (var w in waypointList){ //borramos el waypoint que tenga la misma direccion
                     if(w.x == buscado.x && w.y == buscado.y){
                         waypointList.Remove(w);
+                            break;
                     }
                 }
             }

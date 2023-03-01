@@ -23,6 +23,7 @@ public class PathNode {
     public int gCost;
     public int hCost;
     public int fCost;
+    public int costTho;
     public string W;
     public bool isWalkable;
     public bool isWaypoint;
@@ -34,6 +35,12 @@ public class PathNode {
         this.x = x;
         this.y = y;
         this.W = "";
+        int prob = Random.Range(0, 100);
+        if (prob <20) {
+            this.costTho = Random.Range(100,300);
+        } else {
+            this.costTho = 0;
+        }
         isWaypoint = false;
         int number = Random.Range(0,100);
         
