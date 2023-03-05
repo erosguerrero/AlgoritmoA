@@ -1,4 +1,4 @@
-Library: D:\Documentos\GitHub\AlgoritmoA\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
+Library: C:\Users\erosguer\Documentos\Github\AlgoritmoA\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
 --platform=Windows
 --backend=burst-llvm-14
 --target=X64_SSE2
@@ -131,8 +131,8 @@ Library: D:\Documentos\GitHub\AlgoritmoA\Temp\StagingArea\Data\Plugins\x86_64\li
 --compilation-defines=ENABLE_URP
 --linker-options=PdbAltPath="AlgoritmoA_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
---temp-folder=D:\Documentos\GitHub\AlgoritmoA\Temp\Burst
---output=D:\Documentos\GitHub\AlgoritmoA\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
+--temp-folder=C:\Users\erosguer\Documentos\Github\AlgoritmoA\Temp\Burst
+--output=C:\Users\erosguer\Documentos\Github\AlgoritmoA\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
 --pdb-search-paths=Temp/ManagedSymbols/
 
@@ -283,8 +283,8 @@ Library: D:\Documentos\GitHub\AlgoritmoA\Temp\StagingArea\Data\Plugins\x86_64\li
 --compilation-defines=ENABLE_URP
 --linker-options=PdbAltPath="AlgoritmoA_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
---temp-folder=D:\Documentos\GitHub\AlgoritmoA\Temp\Burst
---output=D:\Documentos\GitHub\AlgoritmoA\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
+--temp-folder=C:\Users\erosguer\Documentos\Github\AlgoritmoA\Temp\Burst
+--output=C:\Users\erosguer\Documentos\Github\AlgoritmoA\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
 --pdb-search-paths=Temp/ManagedSymbols/
 
