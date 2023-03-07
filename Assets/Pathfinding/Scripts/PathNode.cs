@@ -41,7 +41,7 @@ public class PathNode {
             this.costTho = 9999;
         }
         else if (prob <20) {
-            this.costTho = Random.Range(100,1000);//9999;
+            this.costTho = Random.Range(1,2236);//9999;
         } else {
             this.costTho = 0;
         }
